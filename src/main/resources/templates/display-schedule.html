@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content-width="device-width" , initial-scale="1.0">
+<title>Search Engine</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Abel"
+	rel="stylesheet">
+<link rel="stylesheet" href="/explorer/css/styles-merged.css">
+<link rel="stylesheet" href="/explorer/css/style.min.css">
+<link rel="stylesheet" href="/explorer/css/custom.css">
+
+<style>
+.max-td {
+	max-width: 600px; /* Customise it accordingly */
+	white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+</style>
+</head>
+<body>
+
+	<!-- START: header -->
+
+	<header role="banner" class="probootstrap-header">
+		<div class="container">
+			<a href="/" class="probootstrap-logo">mlb.com Homework<span>.</span></a>
+
+			<a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+			<div class="mobile-menu-overlay"></div>
+
+			<nav role="navigation" class="probootstrap-nav hidden-xs">
+				<ul class="probootstrap-main-nav">
+					<li class="active"><a href="/about">About</a></li>
+				</ul>
+
+			</nav>
+		</div>
+	</header>
+	<!-- END: header -->
+
+
+
+	<div class="container">
+		<div class="row">
+
+			<div class="col" th:if="${schedule}">
+
+				<table class="table" th:if="${not #lists.isEmpty(schedule.gameDates)}">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Date</th>
+							<th scope="col">Teams</th>
+							<th scope="col">Venue</th>
+							<th scope="col">Forecast</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="gameDate, iter : ${schedule.gameDates}">
+							<th scope="row" th:text="${iter.index + 1}"></th>
+							<td class="col-1"><span th:text="${gameDate.date}"></span></td>
+							<td class="col-1"><span th:each="game : ${gameDate.games}">
+									<span th:text="${game.teams.away.team.name}"></span> @ <span
+									th:text="${game.teams.home.team.name}"></span>
+							</span></td>
+							<td class="col-1"><span th:each="game : ${gameDate.games}">
+									<span th:text="${game.venue.name}"></span></BR><span th:text="${game.venue.location.city}"></span>, <span th:text="${game.venue.location.state}">,</span>
+							</span></td>
+							<td class="col-1"><span th:each="game : ${gameDate.games}">
+									<span th:text="${game.venue.forecastDescription}"></span>
+							</span></td>
+						</tr>
+					</tbody>
+				</table>
+				<div th:unless="${not #lists.isEmpty(schedule.gameDates)}"> 
+				   No games available that day.
+				</div>
+			</div>
+			<div class="col" th:unless="${schedule}">
+			Team not found.
+			</div>
+			<div class="col" th:if="${invalidDate}">
+			Invalid Date detected. <span style="color:red;" th:text="${invalidDate}"></span>  Should be in ISO format as follows 2022-04-07.
+			</div>
+		</div>
+	</div>
+
+	<!-- END section -->
+
+	<footer class="probootstrap-footer" role="contentinfo">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="probootstrap-copyright">
+						&copy; 2017 <a href="https://uicookies.com/">uiCookies:Explorer</a>
+						All Rights Reserved.
+					</p>
+					<ul class="probootstrap-social">
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-facebook2"></i></a></li>
+						<li><a href="#"><i class="icon-instagram2"></i></a></li>
+						<li><a href="#"><i class="icon-google-plus"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+	</div>
+
+
+	<script src="js/scripts.min.js"></script>
+	<script src="js/main.min.js"></script>
+	<script src="js/custom.js"></script>
+</body>
+</html>

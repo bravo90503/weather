@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content-width="device-width" , initial-scale="1.0">
+<title>Search Engine</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Abel"
+	rel="stylesheet">
+<link rel="stylesheet" href="/explorer/css/styles-merged.css">
+<link rel="stylesheet" href="/explorer/css/style.min.css">
+<link rel="stylesheet" href="/explorer/css/custom.css">
+
+<style>
+.max-td {
+	max-width: 600px; /* Customise it accordingly */
+	white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+</style>
+</head>
+<body>
+
+	<!-- START: header -->
+
+	<header role="banner" class="probootstrap-header">
+		<div class="container">
+			<a href="/" class="probootstrap-logo">mlb.com Homework<span>.</span></a>
+
+			<a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+			<div class="mobile-menu-overlay"></div>
+
+			<nav role="navigation" class="probootstrap-nav hidden-xs">
+				<ul class="probootstrap-main-nav">
+					<li class="active"><a href="/about">About</a></li>
+				</ul>
+
+			</nav>
+		</div>
+	</header>
+	<!-- END: header -->
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h2>Venue Search Form</h2>
+				<form action="#" th:action="@{/findvenue}" th:object="${venue}"
+					method="post">
+					<label for="id">Venue ID</label> <input type="text"
+						th:field="*{formId}" id="formId" placeholder="venue id" th:required="required">
+					<button type="submit" class="btn btn-primary">Find Venue</button>
+				</form>
+			</div>
+		</div>
+		
+				<div class="row">
+			<div class="col">
+				<h2>Schedule Search Form</h2>
+				<form action="#" th:action="@{/findschedule}" th:object="${schedule}"
+					method="post">
+					<label for="id">Team ID</label> <input type="text"
+						th:field="*{teamIds}" id="ids" placeholder="id" th:required="required">
+						<label for="id">Date</label> <input type="text"
+						th:field="*{startDate}" id="startDate" placeholder="date" th:required="required">
+
+					<button type="submit" class="btn btn-primary">Find Team</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- END section -->
+
+	<footer class="probootstrap-footer" role="contentinfo">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="probootstrap-copyright">
+						&copy; 2017 <a href="https://uicookies.com/">uiCookies:Explorer</a>
+						All Rights Reserved.
+					</p>
+					<ul class="probootstrap-social">
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-facebook2"></i></a></li>
+						<li><a href="#"><i class="icon-instagram2"></i></a></li>
+						<li><a href="#"><i class="icon-google-plus"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+	</div>
+
+
+	<script src="js/scripts.min.js"></script>
+	<script src="js/main.min.js"></script>
+	<script src="js/custom.js"></script>
+</body>
+</html>
